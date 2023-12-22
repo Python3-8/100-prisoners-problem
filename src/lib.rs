@@ -8,7 +8,8 @@ pub struct Prisoner {
 impl Prisoner {
     fn visit_room(&self, room: &Room, nprisoners: usize) -> bool {
         assert!(nprisoners >= 100);
-        let first_box = room.boxes[self.number - 1]; // gets the box with our number on it
+        // assumes that the boxes are ordered in asc order by their number
+        let first_box = room.boxes[self.number - 1];
         let mut prev = first_box;
         let mut success = false;
         for _ in 0..nprisoners / 2 {
