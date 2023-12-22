@@ -1,4 +1,4 @@
-use prisoner_problem::simulate;
+use hundred_prisoners_problem::simulate;
 
 const NTIMES: usize = 1_000_000;
 const NPRISONERS: usize = 100;
