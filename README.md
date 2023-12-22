@@ -15,7 +15,7 @@ seconds).
 
 Here is the output from running this program 10 times:
 
-```sh
+```
 ❯ ./target/release/hundred-prisoners-problem
 312104 wins out of 1000000 iterations with 100 prisoners each time
 winrate: 31.2104%
