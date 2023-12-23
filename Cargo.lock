@@ -23,6 +23,7 @@ dependencies = [
 name = "hundred-prisoners-problem"
 version = "0.1.0"
 dependencies = [
+ "prawnypool",
  "rand",
 ]
 
@@ -37,6 +38,12 @@ name = "ppv-lite86"
 version = "0.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5b40af805b3121feab8a3c29f04d8ad262fa8e0561883e7653e024ae4479e6de"
+
+[[package]]
+name = "prawnypool"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9d5e4998b07f7bc8e41ee704411cf6902ea71710629a061e738ce6535a87d3ff"
 
 [[package]]
 name = "rand"

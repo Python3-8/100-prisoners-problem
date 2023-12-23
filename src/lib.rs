@@ -14,7 +14,7 @@ impl Prisoner {
         let mut success = false;
         for _ in 0..nprisoners / 2 {
             let curr = room.boxes[prev.slip - 1];
-            if curr == first_box {
+            if curr.number == first_box.number {
                 success = true;
                 break;
             }

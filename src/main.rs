@@ -1,15 +1,30 @@
 use hundred_prisoners_problem::simulate;
+use prawnypool::ThreadPool;
+use std::sync::{Arc, Mutex};
 
-const NTIMES: usize = 1_000_000;
+const NTHREADS: usize = 15;
+const NTIMES: usize = 10_000_000;
 const NPRISONERS: usize = 100;
 
 fn main() {
-    let mut nwins = 0;
+    let nwins = Arc::new(Mutex::new(0));
+    println!("simulating with {NTHREADS} threads...");
+    let mut pool = ThreadPool::new(NTHREADS);
     for _i in 0..NTIMES {
-        if simulate(NPRISONERS).1 == 0 {
-            nwins += 1;
-        }
+        let nwins = Arc::clone(&nwins);
+        pool.queue(move || {
+            if simulate(NPRISONERS).1 == 0 {
+                *nwins.lock().unwrap() += 1;
+            }
+        });
     }
-    println!("{nwins} wins out of {NTIMES} iterations with {NPRISONERS} prisoners each time");
-    println!("winrate: {}%", (nwins as f64 * 100.) / NTIMES as f64);
+    pool.join();
+    println!(
+        "{} wins out of {NTIMES} iterations with {NPRISONERS} prisoners each time",
+        *nwins.lock().unwrap()
+    );
+    println!(
+        "winrate: {}%",
+        (*nwins.lock().unwrap() as f64 * 100.) / NTIMES as f64
+    );
 }
