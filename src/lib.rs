@@ -11,16 +11,14 @@ impl Prisoner {
         // assumes that the boxes are ordered in asc order by their number
         let first_box = room.boxes[self.number - 1];
         let mut prev = first_box;
-        let mut success = false;
         for _ in 0..nprisoners / 2 {
             let curr = room.boxes[prev.slip - 1];
             if curr.number == first_box.number {
-                success = true;
-                break;
+                return true;
             }
             prev = curr;
         }
-        success
+        false
     }
 }
 
